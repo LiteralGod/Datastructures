@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 /**
  * Hello world!
  *
@@ -12,6 +15,8 @@ public class App
         System.out.println(sum(5));
 
         System.out.println(evenSquares(10));
+
+        System.out.println(balpar(")("));
 
     }
 
@@ -34,5 +39,28 @@ public class App
             evenSquares(n-1);
         }
         return n*n + evenSquares(n-2);
+    }
+
+    public static boolean balpar(String text){
+        Stack myStack = new Stack();
+
+
+        char[] charArray = text.toCharArray();
+
+        for (int i = 0; i < charArray.length; i++) {
+            switch(charArray[i]){
+                case '(':
+                    myStack.push(charArray[i]);
+                    break;
+                case ')':
+                    myStack.pop();
+                    break;
+            }
+            if(myStack.empty()){
+                return true;
+            }
+
+        }
+        return myStack.isEmpty();
     }
 }
